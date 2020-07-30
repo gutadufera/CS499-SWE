@@ -1,6 +1,7 @@
 package edu.mum.cs.cs425.demos.studentrecordsmgmtapp.model;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Student {
     private Integer studentID;
@@ -45,6 +46,10 @@ public class Student {
 
     public void setDateOfAdmission(LocalDate dateOfAdmission) {
         this.dateOfAdmission = dateOfAdmission;
+    }
+
+    public boolean isPlatinumAlumniStudents(){
+        return (Period.between(this.dateOfAdmission, LocalDate.now()).getYears() >=30);
     }
 
     @Override
