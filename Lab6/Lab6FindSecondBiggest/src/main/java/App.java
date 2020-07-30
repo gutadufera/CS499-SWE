@@ -5,7 +5,7 @@ public class App {
     public static void main(String[] args) {
         App app = new App();
         int[] ints = new int[]{10,20,30,40,90};
-        System.out.println("Second biggest =", Arrays.toString(), app.findSecondBiggest(ints));
+        System.out.println("Second biggest =" + Arrays.toString(ints) +" "+ app.findSecondBiggest(ints));
     }
     private Optional<Integer> findSecondBiggest(int[] ints){
         if(ints.length<2)
@@ -16,7 +16,7 @@ public class App {
             if (ints[i]>biggest){
                 secondBiggest = biggest;
                 biggest = ints[i];
-            }else if{
+            }else{
                 secondBiggest = ints[i];
             }
         }
