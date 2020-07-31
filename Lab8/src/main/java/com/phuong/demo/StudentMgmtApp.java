@@ -1,7 +1,11 @@
 package com.phuong.demo;
 
+import com.phuong.demo.model.Classroom;
 import com.phuong.demo.model.Student;
+import com.phuong.demo.model.Transcript;
+import com.phuong.demo.repository.ClassroomRepository;
 import com.phuong.demo.repository.StudentRepository;
+import com.phuong.demo.repository.TranscriptRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,6 +18,10 @@ public class StudentMgmtApp implements CommandLineRunner {
 
     @Autowired
     StudentRepository studentRepository;
+    @Autowired
+    ClassroomRepository classroomRepository;
+    @Autowired
+    TranscriptRepository transcriptRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(StudentMgmtApp.class, args);
@@ -21,14 +29,28 @@ public class StudentMgmtApp implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        Student data: s1: { studentId:1, studentNumber: 000-61-0001, firstName:Anna, middleName: Lynn,
-//                LastName: Smith, cgpa:3.45, dateOfEnrollment:2019/5/24 }
+        Transcript t1 = new Transcript(1L, "BS Computer Science");
+        Transcript savedT1 = saveTranscript(t1);
+
+        Classroom c1 = new Classroom("McLaughlin building", "M105", 1L);
+        Classroom savedC1 = saveClassroom(c1);
         Student s1 = new Student(1L, "000-61-0001", "Anna", "Lynn", "Smith", 3.45, LocalDate.of(2019, 5, 24));
         Student savedS1 = saveStudent(s1);
-        System.out.println("s1");
+
+        System.out.println(savedT1);
+        System.out.println(savedC1);
+        System.out.println(savedS1);
+
+
     }
 
     public Student saveStudent(Student student) {
         return studentRepository.save(student);
+    }
+    public Classroom saveClassroom(Classroom classroom){
+        return classroomRepository.save(classroom);
+    }
+    public Transcript saveTranscript(Transcript transcript){
+        return transcriptRepository.save(transcript);
     }
 }

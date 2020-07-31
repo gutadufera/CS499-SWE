@@ -5,6 +5,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 //studentNumber : (required) (e.g. Data values: 000-61-0001, 000-61-0002, etc.)
 //        firstName : (required) (e.g.  Data values: "Anna", "Bob" etc.)
@@ -30,10 +32,21 @@ public class Student {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
+    @Column(name = "middle_name", nullable = true)
     private String middleName;
+
+    @Column(name = "cgpa", nullable = true)
     private double cgpa;
 
     private LocalDate dateOfEnrollment;
+
+    @OneToOne
+    @JoinColumn(name = "transcript_id", nullable = false, unique = true)
+    private Transcript transcript;
+
+    @ManyToOne()
+    @JoinColumn(name = "classroom_id", nullable = true)
+    private Classroom classroom;
 
     public long getStudentID() {
         return studentID;
@@ -111,7 +124,9 @@ public class Student {
         return "Student ID: " + studentID + "Student Number: " + studentNumber +
                 "First Name: " + firstName + "Midlle Name: " + middleName +
                 "Last Name: " + lastName + "CGPA: " + cgpa +
-                "Date pf Enrollment: " + dateOfEnrollment
+                "Date pf Enrollment: " + dateOfEnrollment+
+                "Classroom: " + classroom+
+                "Transcript: " +transcript
                 ;
     }
 }
