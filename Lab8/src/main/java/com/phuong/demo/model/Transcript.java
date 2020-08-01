@@ -8,6 +8,8 @@ public class Transcript {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long transcriptID;
+
+
     private String degreeTitle;
 
     public long getTranscriptID() {
@@ -29,6 +31,7 @@ public class Transcript {
     public Transcript() {
     }
     @OneToOne(mappedBy = "transcript", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Column(name = "student", nullable=true)
     private Student student;
     public Transcript(String degreeTitle){
         this.degreeTitle = degreeTitle;

@@ -1,0 +1,63 @@
+@startuml
+
+class CashReportView {
+     Integer transactionId;
+    Employee employee;
+     Date transactionDate;
+     Integer transactionPrice;
+     Long empShare;
+     Long compShare;
+     Integer tip;
+     Long empTipShare;
+     String paymentType;
+}
+
+ class Employee {
+     Integer employeeId;
+     String employeeName;
+     Integer employeeTurn;
+}
+
+class SalonService {
+     Integer serviceId;
+     String serviceName;
+     Integer servicePrice;
+}
+
+class TransDetail {
+     String trMasterId;
+     Integer trDetId;
+     Integer trDetEmpId;
+     SalonService salonService;
+     Integer trDetServicePrice;
+     Employee employee;
+     TrMaster tranMaster;
+}
+
+ class TipReport {
+     Integer trDetId;
+     Employee employee;
+     TransMaster transMaster;
+     Date trMastServiceDate;
+     Integer trMastServiceTip;
+     BigDecimal empTipShare;
+}
+
+class TransMaster {
+    String transMasterId;
+    Date trMastServiceDate;
+    Long trMastTotalCharges;
+    TipReport tipReport
+    String paymentType;
+    List<TransDetail> transDetail;
+}
+
+TransMaster "1..*" -- "1..1" TransDetail
+TipReport "0..1" --> "0..1" Employee
+CashReportView "0..1" --> "1" Employee
+TransDetail -left-> SalonService
+CashReportView "1"  --> "1" TransDetail
+TransMaster "0..1" -- "0..1" TipReport
+
+
+@enduml

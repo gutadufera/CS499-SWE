@@ -29,19 +29,15 @@ public class StudentMgmtApp implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Transcript t1 = new Transcript(1L, "BS Computer Science");
-        Transcript savedT1 = saveTranscript(t1);
-
         Classroom c1 = new Classroom("McLaughlin building", "M105", 1L);
         Classroom savedC1 = saveClassroom(c1);
-        Student s1 = new Student(1L, "000-61-0001", "Anna", "Lynn", "Smith", 3.45, LocalDate.of(2019, 5, 24));
+        Transcript t1 = new Transcript("BS Computer Science");
+        Student s1 = new Student("000-61-0001", "Anna", "Lynn", "Smith", 3.45, LocalDate.of(2019, 5, 24), t1, c1);
         Student savedS1 = saveStudent(s1);
-
+        Transcript savedT1 = saveTranscript(t1);
         System.out.println(savedT1);
         System.out.println(savedC1);
         System.out.println(savedS1);
-
-
     }
 
     public Student saveStudent(Student student) {

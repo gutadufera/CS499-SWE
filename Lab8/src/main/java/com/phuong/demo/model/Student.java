@@ -41,7 +41,7 @@ public class Student {
     private LocalDate dateOfEnrollment;
 
     @OneToOne
-    @JoinColumn(name = "transcript_id", nullable = false, unique = true)
+    @JoinColumn(name = "transcript_id", nullable = true, unique = true)
     private Transcript transcript;
 
     @ManyToOne()
@@ -108,15 +108,17 @@ public class Student {
         super();
     }
 
-    public Student(Long studentId, String studentNumber, String firstName, String middleName, String lastName,
-                   Double cgpa, LocalDate dateOfEnrollment) {
-        this.studentID = studentId;
+    public Student(String studentNumber, String firstName, String middleName, String lastName,
+                   Double cgpa, LocalDate dateOfEnrollment, Transcript transcript, Classroom classroom) {
+//        this.studentID = studentId;
         this.studentNumber = studentNumber;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.cgpa = cgpa;
         this.dateOfEnrollment = dateOfEnrollment;
+        this.transcript = transcript;
+        this.classroom = classroom;
     }
 
     @Override
