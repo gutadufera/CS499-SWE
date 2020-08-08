@@ -108,6 +108,22 @@ public class Student {
         super();
     }
 
+    public Transcript getTranscript() {
+        return transcript;
+    }
+
+    public void setTranscript(Transcript transcript) {
+        this.transcript = transcript;
+    }
+
+    public Classroom getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(Classroom classroom) {
+        this.classroom = classroom;
+    }
+
     public Student(String studentNumber, String firstName, String middleName, String lastName,
                    Double cgpa, LocalDate dateOfEnrollment, Transcript transcript, Classroom classroom) {
 //        this.studentID = studentId;

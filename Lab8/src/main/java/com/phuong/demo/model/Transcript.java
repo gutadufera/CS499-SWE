@@ -28,10 +28,17 @@ public class Transcript {
         this.degreeTitle = degreeTitle;
     }
 
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
     public Transcript() {
     }
     @OneToOne(mappedBy = "transcript", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @Column(name = "student", nullable=true)
     private Student student;
     public Transcript(String degreeTitle){
         this.degreeTitle = degreeTitle;

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
+          integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Phuong</title>
+</head>
+<body>
+<div th:replace="/fragments/header :: header"></div>
+<main>
+    <div style="padding-top:1em;" class="container">
+        <div style="margin-bottom: 1em;">
+            <span style="font-size: 2em; color: #32a5e7;">Edit student with Student Number: [[${student.studentNumber}]]</span>
+        </div>
+
+        <form id="editStudentForm" method="post" action="/eregistrar/student/edit" th:object="${student}">
+            <fieldset>
+                <input type="hidden" name="studentId" th:value="${student.studentId}"/>
+                <div class="row">
+                    <!--Student Number-->
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="studentNumber">Student Number</label>
+                            <span th:if="${#fields.hasErrors('studentNumber')}" th:errors="*{studentNumber}"
+                                  class="alert alert-danger"></span>
+                            <input id="studentNumber" name="studentNumber" type="text" class="form-control"
+                                   th:value="${student.studentNumber}" autofocus required>
+                        </div>
+                    </div>
+                    <!--First Name-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="firstName">First name</label>
+                            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                                  class="alert alert-danger"></span>
+                            <input id="firstName" name="firstName" type="text" class="form-control"
+                                   th:value="${student.firstName}" autofocus required>
+                        </div>
+                    </div>
+
+                    <!--Last Name-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="lastName">Last name</label>
+                            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                                  class="alert alert-danger"></span>
+                            <input id="lastName" name="lastName" type="text" class="form-control"
+                                   th:value="${student.lastName}" autofocus required>
+                        </div>
+                    </div>
+
+                    <!--CGPA-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="cgpa">CGPA</label>
+                            <span th:if="${#fields.hasErrors('cgpa')}" th:errors="*{cgpa}"
+                                  class="alert alert-danger"></span>
+                            <input id="cgpa" name="cgpa" type="number" class="form-control"
+                                   th:value="${student.cgpa}">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="enrollmentDate">Enrollment Date</label>
+                            <span th:if="${#fields.hasErrors('enrollmentDate')}" th:errors="*{enrollmentDate}"
+                                  class="alert alert-danger"></span>
+                            <input id="enrollmentDate" name="enrollmentDate" type="date" class="form-control"
+                                   th:value="${student.enrollmentDate}" autofocus required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="isInternational">International</label>
+                            <span th:if="${#fields.hasErrors('isInternational')}" th:errors="*{isInternational}"
+                                  class="alert alert-danger"></span>
+                            <select id="isInternational" name="isInternational" th:field="*{isInternational}" class="form-control"
+                                    th:value="${student.isInternational}">
+                                <option th:value="YES">Yes</option>
+                                <option th:value="NO">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="float:right;">
+                    <a href="/eregistrar/student/list" class="btn btn-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
+                    <button id="btnSubmit" type="submit" class="btn btn-success">Update</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</main>
+<div th:replace="fragments/footer::footer"></div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"
+        integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J"
+        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+</body>
+</html>
